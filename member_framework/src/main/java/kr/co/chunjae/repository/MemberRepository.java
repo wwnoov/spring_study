@@ -12,14 +12,15 @@ import java.util.List;
 public class MemberRepository {
 
   private final SqlSessionTemplate sql;
-  public int save(MemberDTO memberDTO) {
-    System.out.println("memberDTO = " + memberDTO);
 
+
+  public int save(MemberDTO memberDTO) {
+    System.out.println(memberDTO);
     return sql.insert("Member.save", memberDTO);
   }
 
   public MemberDTO login(MemberDTO memberDTO) {
-    return sql.selectOne("Member.login", memberDTO);
+  return sql.selectOne("Member.login",memberDTO);
   }
 
   public List<MemberDTO> findAll() {
@@ -27,6 +28,19 @@ public class MemberRepository {
   }
 
   public MemberDTO findById(Long id) {
-    return sql.selectOne("Member.findById", id);
+    return sql.selectOne("Member.findById",id);
   }
+
+  public int update(MemberDTO memberDTO) {
+    return sql.update("Member.update",memberDTO);
+  }
+
+  public void deleteId(Long id){
+    sql.delete(("Member.deleteId"),id);
+  }
+
+  public MemberDTO findByMemberEmail(String loginEmail) {
+    return sql.selectOne("Member.findByMemberEmail",loginEmail);
+  }
+
 }

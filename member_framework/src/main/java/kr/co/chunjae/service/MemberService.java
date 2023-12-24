@@ -15,12 +15,11 @@ public class MemberService {
   public int save(MemberDTO memberDTO) {
     return memberRepository.save(memberDTO);
   }
-
   public boolean login(MemberDTO memberDTO) {
     MemberDTO loginMember = memberRepository.login(memberDTO);
-    if (loginMember != null) {
+    if(loginMember != null){
       return true;
-    } else {
+    }else{
       return false;
     }
   }
@@ -29,7 +28,36 @@ public class MemberService {
     return memberRepository.findAll();
   }
 
-  public MemberDTO findById(Long id) {
+  public MemberDTO findById(long id) {
     return memberRepository.findById(id);
   }
+
+  public boolean update(MemberDTO memberDTO) {
+    int result = memberRepository.update(memberDTO);
+    if (result>0){
+      return true;
+    }else {
+      return false;
+    }
+  }
+
+
+  public void deleteId(long id){
+    memberRepository.deleteId(id);
+  }
+
+  public MemberDTO findByMemberEmail(String loginEmail) {
+    return memberRepository.findByMemberEmail(loginEmail);
+  }
+
+  public String emailCheck(String memberEmail){
+    MemberDTO memberDTO = memberRepository.findByMemberEmail(memberEmail);
+    if (memberDTO == null) {
+      System.out.println("이메일중복x");
+      return "ok";
+    }else{
+      System.out.println("이메일중복x");
+      return "no";
+      }
+    }
 }

@@ -21,7 +21,6 @@
         <tr>
             <td>${member.id}</td>
             <td>
-
                 <a href="/member?id=${member.id}">${member.memberEmail}</a>
             </td>
             <td>${member.memberPassword}</td>
@@ -41,7 +40,7 @@
 <script>
     const deleteMember = (id) => {
         console.log(id);
-        location.href = "/member/delete?id="+id;
+        location.href = "/member/deleteId?id="+id;
     }
 </script>
 </html>
